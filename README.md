@@ -18,7 +18,7 @@ A full-stack mini application demonstrating FE, BE, and deployment skills.
 - **Backend**: Node.js + Express
 - **Database**: PostgreSQL
 - **Authentication**: JWT tokens
-- **Language**: JavaScript (not TypeScript)
+- **Language**: JavaScript 
 
 ## Features
 
