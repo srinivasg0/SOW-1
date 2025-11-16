@@ -6,10 +6,10 @@
 
 ```bash
 # Create PostgreSQL database
-createdb lettfaktura_sop
+createdb sow
 
 # Run complete setup (creates tables, indexes, and populates with initial data)
-psql -U postgres -d lettfaktura_sop -f database/setup-complete.sql
+psql -U postgres -d sow -f database/setup-complete.sql
 ```
 
 ### 2. Backend Setup
@@ -24,7 +24,7 @@ npm install
 # Edit .env with your database credentials:
 # DB_HOST=localhost
 # DB_PORT=5432
-# DB_NAME=lettfaktura_sop
+# DB_NAME=sow
 # DB_USER=postgres
 # DB_PASSWORD=your_password
 # JWT_SECRET=your_super_secret_jwt_key_min_32_chars

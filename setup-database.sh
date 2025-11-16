@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Setting up Lettfaktura SOP Database..."
+echo "Setting up SOW Database..."
 echo ""
 
 # Try to find PostgreSQL
@@ -15,8 +15,8 @@ done
 if [ -z "$PG_PATH" ]; then
     echo "ERROR: PostgreSQL not found in default locations."
     echo "Please run these commands manually:"
-    echo "  createdb -U postgres lettfaktura_sop"
-    echo "  psql -U postgres -d lettfaktura_sop -f database/setup-complete.sql"
+    echo "  createdb -U postgres sow"
+    echo "  psql -U postgres -d sow -f database/setup-complete.sql"
     exit 1
 fi
 
@@ -24,7 +24,7 @@ echo "Found PostgreSQL at: $PG_PATH"
 echo ""
 
 echo "Step 1: Creating database..."
-"$PG_PATH/psql.exe" -U postgres -c "CREATE DATABASE lettfaktura_sop;" 2>/dev/null
+"$PG_PATH/psql.exe" -U postgres -c "CREATE DATABASE sow;" 2>/dev/null
 if [ $? -eq 0 ]; then
     echo "Database created successfully!"
 else
@@ -33,7 +33,7 @@ fi
 echo ""
 
 echo "Step 2: Setting up database schema and data..."
-"$PG_PATH/psql.exe" -U postgres -d lettfaktura_sop -f database/setup-complete.sql
+"$PG_PATH/psql.exe" -U postgres -d sow -f database/setup-complete.sql
 if [ $? -ne 0 ]; then
     echo "ERROR setting up database. Check your PostgreSQL password."
     exit 1

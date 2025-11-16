@@ -3,9 +3,9 @@
 
 -- Create database (if not exists)
 -- Note: You may need to run this separately if database doesn't exist
--- CREATE DATABASE lettfaktura_sop;
+-- CREATE DATABASE sow;
 
--- Make sure you're connected to lettfaktura_sop database
+-- Make sure you're connected to sow database
 -- Then run everything below:
 
 -- Drop tables if they exist (for clean setup)

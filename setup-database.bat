@@ -1,5 +1,5 @@
 @echo off
-echo Setting up Lettfaktura SOP Database...
+echo Setting up SOW Database...
 echo.
 
 REM Try to find PostgreSQL installation
@@ -23,7 +23,7 @@ echo Found PostgreSQL at: %PG_PATH%
 echo.
 
 echo Step 1: Creating database...
-"%PG_PATH%\psql.exe" -U postgres -c "CREATE DATABASE lettfaktura_sop;" 2>nul
+"%PG_PATH%\psql.exe" -U postgres -c "CREATE DATABASE sow;" 2>nul
 if errorlevel 1 (
     echo Database might already exist, continuing...
 ) else (
@@ -32,7 +32,7 @@ if errorlevel 1 (
 echo.
 
 echo Step 2: Setting up database schema and data...
-"%PG_PATH%\psql.exe" -U postgres -d lettfaktura_sop -f database\setup-complete.sql
+"%PG_PATH%\psql.exe" -U postgres -d sow -f database\setup-complete.sql
 if errorlevel 1 (
     echo ERROR setting up database. Check your PostgreSQL password.
     pause

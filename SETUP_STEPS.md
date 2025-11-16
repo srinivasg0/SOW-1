@@ -11,12 +11,12 @@ Open a new terminal/command prompt and run:
 
 ```bash
 # Create the database
-createdb lettfaktura_sop
+createdb sow
 
 # Or if that doesn't work, use psql:
 psql -U postgres
 # Then in psql prompt:
-CREATE DATABASE lettfaktura_sop;
+CREATE DATABASE sow;
 \q
 ```
 
@@ -24,7 +24,7 @@ CREATE DATABASE lettfaktura_sop;
 
 ```bash
 # Run complete setup (creates tables, indexes, and populates with initial data)
-psql -U postgres -d lettfaktura_sop -f database/setup-complete.sql
+psql -U postgres -d sow -f database/setup-complete.sql
 ```
 
 ## Step 4: Install Backend Dependencies
@@ -44,7 +44,7 @@ npm install
    ```
    DB_HOST=localhost
    DB_PORT=5432
-   DB_NAME=lettfaktura_sop
+   DB_NAME=sow
    DB_USER=postgres
    DB_PASSWORD=YOUR_POSTGRES_PASSWORD_HERE
    JWT_SECRET=your_super_secret_jwt_key_min_32_characters_long_change_this

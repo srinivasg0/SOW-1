@@ -1,4 +1,4 @@
-# Lettfaktura SOP Mini App
+# SOW Mini App
 
 A full-stack mini application demonstrating FE, BE, and deployment skills.
 
@@ -50,10 +50,10 @@ npm install
 3. Set up database:
 ```bash
 # Create database
-createdb lettfaktura_sop
+createdb sow
 
 # Run complete setup (schema + data)
-psql -U postgres -d lettfaktura_sop -f database/setup-complete.sql
+psql -U postgres -d sow -f database/setup-complete.sql
 ```
 
 4. Configure environment variables:
