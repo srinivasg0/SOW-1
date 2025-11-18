@@ -6,7 +6,7 @@ services:
   - type: web
     name: lettfaktura-backend
     env: node
-    region: frankfurt  # Frankfurt, Germany - closest to Sweden
+    region: oregon  # Change to your preferred region
     plan: free  # Change to 'starter' or 'standard' for production
     buildCommand: npm install
     startCommand: npm start
@@ -37,23 +37,22 @@ services:
           name: lettfaktura-db
           property: password
       - key: JWT_SECRET
-        generateValue: true  # Render will generate this automatically
+        generateValue: true
       - key: FRONTEND_URL
-        sync: false  # Set this manually after frontend is deployed
-        # Format: https://lettfaktura-frontend.onrender.com
+        sync: false
 
   # Frontend Static Site
   - type: web
     name: lettfaktura-frontend
     env: static
+    region: oregon  # Change to your preferred region
     plan: free
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
     rootDir: frontend
     envVars:
       - key: VITE_API_URL
-        sync: false  # You'll need to set this manually after backend is deployed
-        # Format: https://lettfaktura-backend.onrender.com/api
+        sync: false
 
 # PostgreSQL Database
 databases:
@@ -61,5 +60,5 @@ databases:
     databaseName: sow
     user: sow_user
     plan: free  # Change to 'starter' or 'standard' for production
-    region: frankfurt  # Frankfurt, Germany - closest to Sweden
+    region: oregon  # Should match your services region
 
