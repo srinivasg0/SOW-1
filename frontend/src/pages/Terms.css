@@ -3,23 +3,11 @@
   position: relative;
   display: flex;
   flex-direction: column;
-}
-
-.terms-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.background-image {
-  width: 100%;
-  /* Slightly taller than viewport to avoid any white gaps on mobile scroll */
-  height: 120%;
-  object-fit: cover;
+  /* Use CSS background instead of fixed img to avoid iOS URL bar glitches */
+  background-image: url('https://storage.123fakturera.se/public/wallpapers/sverige43.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 .terms-main {
