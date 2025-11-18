@@ -65,7 +65,7 @@ function Terms({ language, setLanguage }) {
                 ) : null
               )
             ) : (
-              <p>Placeholder text - will be replaced with actual terms content later.</p>
+              <p>Placeholder text - will be replaced with actual terms content later</p>
             )}
           </div>
         </div>
