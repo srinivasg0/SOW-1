@@ -1,0 +1,66 @@
+# Render Blueprint Configuration
+# This file allows you to deploy all services at once using Render's Blueprint feature
+
+services:
+  # Backend Web Service
+  - type: web
+    name: lettfaktura-backend
+    env: node
+    region: oregon  # Change to your preferred region
+    plan: free  # Change to 'starter' or 'standard' for production
+    buildCommand: npm install
+    startCommand: npm start
+    rootDir: backend
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DB_HOST
+        fromDatabase:
+          name: lettfaktura-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: lettfaktura-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: lettfaktura-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: lettfaktura-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: lettfaktura-db
+          property: password
+      - key: JWT_SECRET
+        generateValue: true  # Render will generate this automatically
+      - key: FRONTEND_URL
+        sync: false  # Set this manually after frontend is deployed
+        # Format: https://lettfaktura-frontend.onrender.com
+
+  # Frontend Static Site
+  - type: web
+    name: lettfaktura-frontend
+    env: static
+    region: oregon  # Change to your preferred region
+    plan: free
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    rootDir: frontend
+    envVars:
+      - key: VITE_API_URL
+        sync: false  # You'll need to set this manually after backend is deployed
+        # Format: https://lettfaktura-backend.onrender.com/api
+
+# PostgreSQL Database
+databases:
+  - name: lettfaktura-db
+    databaseName: sow
+    user: sow_user
+    plan: free  # Change to 'starter' or 'standard' for production
+    region: oregon  # Should match your services region
+
