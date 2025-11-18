@@ -42,11 +42,9 @@ services:
         sync: false
 
   # Frontend Static Site
-  - type: static  # Changed from 'web' to 'static'
+  - type: pserv  # Use 'pserv' for static sites in Blueprint
     name: lettfaktura-frontend
-    # Removed 'env: static' - not needed for static sites
-    # Removed 'region' - static sites use global CDN
-    plan: free
+    # No 'plan' field for static sites
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
     rootDir: frontend
