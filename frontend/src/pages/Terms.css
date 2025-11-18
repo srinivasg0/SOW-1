@@ -17,7 +17,8 @@
 
 .background-image {
   width: 100%;
-  height: 100%;
+  /* Slightly taller than viewport to avoid any white gaps on mobile scroll */
+  height: 120%;
   object-fit: cover;
 }
 

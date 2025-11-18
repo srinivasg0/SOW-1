@@ -1,0 +1,61 @@
+Deployment Summary - 18 Nov 2025
+=================================
+
+Stack & Versions I Used
+-----------------------
+Frontend
+- React 18.2.0 (bundled via Vite 5.0.8)
+- React Router DOM 6.20.0 for routing
+- Axios 1.6.2 for API calls
+- Vite dev server/build tooling
+- Plain CSS (no external UI framework)
+
+Backend
+- Node.js runtime 22.16.0 on Render (Blueprint-managed)
+- Express 4.18.2
+- pg 8.11.3 for PostgreSQL access
+- cors 2.8.5 with custom whitelist logic
+- dotenv 16.3.1 for configuration
+- bcryptjs 2.4.3 for hashing
+- jsonwebtoken 9.0.2 for auth tokens
+
+Database
+- Render PostgreSQL (Frankfurt region) provisioned via render.yaml
+- Schema loaded from `database/setup-complete.sql` (users, products, translations)
+- Admin seeded through `node backend/create-admin-user.js <external_db_url> admin password123`
+
+Render Configuration
+--------------------
+Frontend Static Site — https://lettfaktura-frontend.onrender.com
+- Build command: `npm install && npm run build`
+- Publish directory: `dist`
+- Environment variable: `VITE_API_URL=https://lettfaktura-backend-ivl3.onrender.com/api`
+- Redirect/Rewrite: `/*` → `/index.html` (Rewrite) so SPA routes work
+
+Backend Web Service — https://lettfaktura-backend-ivl3.onrender.com
+- Build command: `npm install`
+- Start command: `npm start`
+- Port: 10000 (Render detects automatically)
+- Environment variables:
+  * `NODE_ENV=production`
+  * `PORT=10000`
+  * `DATABASE_URL=<internal Render Postgres URL>`
+  * `JWT_SECRET=<64-char hex I generated>`
+  * `FRONTEND_URL=https://lettfaktura-frontend.onrender.com`
+- Health endpoint: `/api/health`
+
+Live URLs & Credentials
+-----------------------
+- Frontend URL: https://lettfaktura-frontend.onrender.com
+- Backend base: https://lettfaktura-backend-ivl3.onrender.com
+- Health check: https://lettfaktura-backend-ivl3.onrender.com/api/health
+- Example API: https://lettfaktura-backend-ivl3.onrender.com/api/translations/terms/sv
+- Demo login:
+  * Username: admin
+  * Password: password123
+
+Notes
+-----
+- Language toggle now pulls live translations from the backend.
+- Products API requires the JWT returned by `/api/auth/login`.
+- Services are on Render free tier, so expect ~30s cold starts after inactivity.
