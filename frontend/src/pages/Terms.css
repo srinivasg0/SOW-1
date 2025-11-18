@@ -3,26 +3,21 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  /* Default (mobile-first) uses CSS background for smoother URL bar behavior */
+  background-image: url('https://storage.123fakturera.se/public/wallpapers/sverige43.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 .terms-background {
-  position: absolute;
-  top: -10%;
-  left: 0;
-  width: 100%;
-  height: 120%;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
+  display: none; /* hidden on mobile */
 }
 
 .background-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.05);
-  filter: brightness(0.95);
 }
 
 .terms-main {
@@ -186,6 +181,40 @@
   }
   .terms-container {
     max-width: 900px;
+  }
+}
+
+@media (min-width: 769px) {
+  .terms-page {
+    background: none;
+    overflow: hidden;
+  }
+
+  .terms-background {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: none;
+    filter: none;
+  }
+
+  .terms-main,
+  .terms-header-section,
+  .terms-container {
+    position: relative;
+    z-index: 10;
   }
 }
 
