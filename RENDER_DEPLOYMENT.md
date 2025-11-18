@@ -186,11 +186,23 @@ After backend is deployed, you need to create an admin user:
    ```
    ⚠️ **Replace** `lettfaktura-backend.onrender.com` with your actual backend URL from Step 3
 
-5. Click **"Create Static Site"**
+5. **IMPORTANT - Configure SPA Routing** (to fix "Not Found" errors on routes):
+   - After creating the service, go to your frontend service settings
+   - Scroll down to **"Redirects/Rewrites"** section
+   - Click **"Add Redirect"**
+   - Configure:
+     - **Source**: `/*`
+     - **Destination**: `/index.html`
+     - **Action**: `Rewrite` (or `Redirect` with status `200`)
+   - Click **"Save"**
+   
+   ⚠️ **This is critical** - Without this, direct access to routes like `/login` will show "Not Found" errors.
 
-6. Wait for deployment to complete
+6. Click **"Create Static Site"**
 
-7. **Note the frontend URL**: It will be something like `https://lettfaktura-frontend.onrender.com`
+7. Wait for deployment to complete
+
+8. **Note the frontend URL**: It will be something like `https://lettfaktura-frontend.onrender.com`
 
 ---
 
@@ -233,6 +245,17 @@ The backend is already configured to use the `FRONTEND_URL` environment variable
 - Verify `VITE_API_URL` environment variable is set correctly
 - Check backend URL is accessible (visit it in browser)
 - Ensure CORS is configured properly
+
+### "Not Found" errors on routes (e.g., `/login`, `/pricelist`)
+- **This is a common SPA routing issue**
+- Go to your frontend service in Render Dashboard
+- Navigate to **Settings** → **Redirects/Rewrites**
+- Add a redirect rule:
+  - **Source**: `/*`
+  - **Destination**: `/index.html`
+  - **Action**: `Rewrite` (or `Redirect` with status `200`)
+- Save and wait for redeployment
+- The `_redirects` file in `frontend/public/` should also help, but Render dashboard configuration is more reliable
 
 ### 502 Bad Gateway
 - Check backend logs for errors
