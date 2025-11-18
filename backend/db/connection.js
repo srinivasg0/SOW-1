@@ -5,13 +5,29 @@ dotenv.config();
 
 const { Pool } = pkg;
 
-const pool = new Pool({
-  host: process.env.DB_HOST || 'localhost',
-  port: process.env.DB_PORT || 5432,
-  database: process.env.DB_NAME || 'sow',
-  user: process.env.DB_USER || 'postgres',
-  password: process.env.DB_PASSWORD,
-});
+// Support both DATABASE_URL (connection string) and individual variables
+let poolConfig;
+
+if (process.env.DATABASE_URL) {
+  // Use connection string if available (Render provides this)
+  poolConfig = {
+    connectionString: process.env.DATABASE_URL,
+    ssl: process.env.NODE_ENV === 'production' ? {
+      rejectUnauthorized: false
+    } : false
+  };
+} else {
+  // Fall back to individual variables
+  poolConfig = {
+    host: process.env.DB_HOST || 'localhost',
+    port: process.env.DB_PORT || 5432,
+    database: process.env.DB_NAME || 'sow',
+    user: process.env.DB_USER || 'postgres',
+    password: process.env.DB_PASSWORD,
+  };
+}
+
+const pool = new Pool(poolConfig);
 
 pool.on('connect', () => {
   console.log('Connected to PostgreSQL database');
