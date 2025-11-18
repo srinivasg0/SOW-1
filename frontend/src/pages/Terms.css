@@ -1,8 +1,9 @@
 .terms-page {
-  min-height: 100vh;
+  height: 100vh;
   position: relative;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
 }
 
 .terms-background {
