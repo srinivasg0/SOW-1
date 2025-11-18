@@ -34,6 +34,14 @@ function Terms({ language, setLanguage }) {
 
   return (
     <div className="terms-page">
+      <div className="terms-background" aria-hidden="true">
+        <img
+          src="https://storage.123fakturera.se/public/wallpapers/sverige43.jpg"
+          alt=""
+          className="background-image"
+        />
+      </div>
+
       <Header 
         translations={translations}
         language={language}
