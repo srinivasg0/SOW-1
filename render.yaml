@@ -6,7 +6,7 @@ services:
   - type: web
     name: lettfaktura-backend
     env: node
-    region: oregon  # Change to your preferred region
+    region: frankfurt  # Frankfurt, Germany - closest to Sweden
     plan: free  # Change to 'starter' or 'standard' for production
     buildCommand: npm install
     startCommand: npm start
@@ -46,7 +46,6 @@ services:
   - type: web
     name: lettfaktura-frontend
     env: static
-    region: oregon  # Change to your preferred region
     plan: free
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
@@ -62,5 +61,5 @@ databases:
     databaseName: sow
     user: sow_user
     plan: free  # Change to 'starter' or 'standard' for production
-    region: oregon  # Should match your services region
+    region: frankfurt  # Frankfurt, Germany - closest to Sweden
 

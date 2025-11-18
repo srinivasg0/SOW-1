@@ -66,7 +66,7 @@ If you want to deploy everything at once, you can use the `render.yaml` file inc
    - **Name**: `lettfaktura-db` (or your preferred name)
    - **Database**: `sow` (or leave default)
    - **User**: Leave default (will be auto-generated)
-   - **Region**: Choose closest to your users
+   - **Region**: Frankfurt (Germany) - closest to Sweden, or choose closest to your users
    - **PostgreSQL Version**: 14 or higher
    - **Plan**: Free tier (or paid if needed)
 
@@ -101,7 +101,7 @@ If you want to deploy everything at once, you can use the `render.yaml` file inc
 
 3. Configure the backend service:
    - **Name**: `lettfaktura-backend` (or your preferred name)
-   - **Region**: Same as your database
+   - **Region**: Frankfurt (same as your database) - closest to Sweden
    - **Branch**: `main` (or your default branch)
    - **Root Directory**: `backend`
    - **Runtime**: `Node`
