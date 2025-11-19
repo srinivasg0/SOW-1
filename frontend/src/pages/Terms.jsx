@@ -13,16 +13,34 @@ function Terms({ language, setLanguage }) {
   }, [language]);
 
   useEffect(() => {
-    // Force body height on mobile to prevent white gaps
+    // ENHANCED ANDROID + iOS FIX
+    const setVH = () => {
+      // Get actual viewport height (works for Android address bar)
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+
+    // Set on mount
+    setVH();
+    
+    // Update on resize (Android address bar hide/show)
+    window.addEventListener('resize', setVH);
+    window.addEventListener('orientationchange', setVH);
+    
+    // Force styles for both iOS and Android
     document.documentElement.style.height = '100%';
     document.body.style.height = '100%';
     document.body.style.overscrollBehavior = 'none';
+    document.body.style.position = 'relative'; // Android fix
     
     return () => {
       // Cleanup on unmount
+      window.removeEventListener('resize', setVH);
+      window.removeEventListener('orientationchange', setVH);
       document.documentElement.style.height = '';
       document.body.style.height = '';
       document.body.style.overscrollBehavior = '';
+      document.body.style.position = '';
     };
   }, []);
 

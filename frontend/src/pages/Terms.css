@@ -1,20 +1,23 @@
-/* Base styles for html and body - CRITICAL for mobile */
+/* Base styles for html and body - CRITICAL for mobile (iOS + Android) */
 html, body {
   margin: 0;
   padding: 0;
+  width: 100%;
+  height: 100%;
   overflow-x: hidden;
   /* Prevent white space on elastic overscroll */
   overscroll-behavior: none;
   overscroll-behavior-y: contain;
+  /* Android-specific fix */
+  position: relative;
 }
 
 .terms-page {
   min-height: 100vh;
-  min-height: 100lvh;
+  min-height: 100svh; /* Small viewport - CRITICAL for Android */
   position: relative;
   display: flex;
   flex-direction: column;
-  /* Prevent scrolling white gaps */
   overflow-x: hidden;
 }
 
@@ -22,27 +25,39 @@ html, body {
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;  /* Android needs explicit right/bottom */
+  bottom: 0; /* Android needs explicit right/bottom */
   width: 100%;
-  height: 100vh;
-  height: 100lvh;
+  height: 100%;
+  min-height: 100vh;
+  min-height: 100svh; /* CRITICAL for Android address bar */
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  /* GPU acceleration - CRITICAL for mobile flicker fix */
+  /* GPU acceleration - works for both iOS and Android */
   will-change: transform;
   backface-visibility: hidden;
-  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  transform: translate3d(0, 0, 0); /* Use translate3d instead of translateZ for Android */
+  -webkit-transform: translate3d(0, 0, 0); /* Android WebKit */
   /* Fallback background color to match image */
   background-color: #1a4d6d;
 }
 
 .background-image {
+  position: absolute; /* Android fix */
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  min-height: 100vh;
+  min-height: 100svh; /* CRITICAL for Android */
   object-fit: cover;
-  /* Additional GPU acceleration for the image itself */
-  transform: translateZ(0);
+  /* GPU acceleration for Android */
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .terms-main {
