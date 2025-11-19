@@ -1,76 +1,43 @@
-/* Base styles for html and body - CRITICAL for mobile (iOS + Android) */
+/* 1) Global page background on body/html, not on a nested div */
 html, body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
   overflow-x: hidden;
-  /* Prevent white space on elastic overscroll */
-  overscroll-behavior: none;
   overscroll-behavior-y: contain;
-  /* Android-specific fix */
-  position: relative;
-}
-
-.terms-page {
-  min-height: 100vh;
-  min-height: 100svh; /* Small viewport - CRITICAL for Android */
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  overflow-x: hidden;
-}
-
-.terms-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;  /* Android needs explicit right/bottom */
-  bottom: 0; /* Android needs explicit right/bottom */
-  width: 100%;
-  height: 100%;
-  min-height: 100vh;
-  min-height: 100svh; /* CRITICAL for Android address bar */
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
-  /* GPU acceleration - works for both iOS and Android */
-  will-change: transform;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  transform: translate3d(0, 0, 0); /* Use translate3d instead of translateZ for Android */
-  -webkit-transform: translate3d(0, 0, 0); /* Android WebKit */
-  /* Fallback background color to match image */
   background-color: #1a4d6d;
 }
 
-.background-image {
-  position: absolute; /* Android fix */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  min-height: 100vh;
-  min-height: 100svh; /* CRITICAL for Android */
-  object-fit: cover;
-  /* GPU acceleration for Android */
-  transform: translate3d(0, 0, 0);
-  -webkit-transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+/* Fixed background image bound to viewport */
+body {
+  background-image: url("https://storage.123fakturera.se/public/wallpapers/sverige43.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* let browser handle it at root level */
 }
 
+/* 2) Let each page just be a normal scrolling layer */
+#root {
+  min-height: 100vh;
+}
+
+/* Terms page no longer owns the background */
+.terms-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 20px;
+}
+
+/* Everything else same as you had, but DELETE .terms-background and .background-image */
 .terms-main {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  position: relative;
-  z-index: 10;
-  padding: 40px 20px;
-  /* Ensure content is always above background */
-  isolation: isolate;
 }
 
 .terms-header-section {
@@ -85,27 +52,26 @@ html, body {
   font-weight: bold;
   margin-bottom: 20px;
   color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
 .terms-container {
   background: white;
   border-radius: 12px;
   padding: 40px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
   max-width: 800px;
   width: 100%;
   display: flex;
   flex-direction: column;
-  position: relative;
-  z-index: 10;
 }
 
 .terms-close-button {
   width: 15vw;
+  max-width: 280px;
   height: 54px;
   padding: 14px;
-  background: rgb(8, 158, 30);
+  background: rgb(8,158,30);
   color: white;
   border: none;
   border-radius: 25px;
@@ -115,125 +81,33 @@ html, body {
   transition: background 0.3s;
 }
 
-.terms-header-section .terms-close-button {
-  margin-bottom: 0;
-}
-
 .terms-close-button-bottom {
   margin-top: 30px;
 }
 
-.terms-close-button:hover {
-  background: #45a049;
-}
-
-.terms-content {
-  color: #333;
-  line-height: 1.6;
-  font-size: 16px;
-}
-
-.terms-content p {
-  margin-bottom: 15px;
-}
-
+/* keep your responsive tweaks */
 @media (max-width: 480px) {
-  .terms-main {
+  .terms-page {
     padding: 15px 10px;
   }
-  .terms-header-section {
-    margin-bottom: 12px;
-  }
+
   .terms-container {
     padding: 20px 15px;
   }
+
   .terms-title {
     font-size: 24px;
     margin-bottom: 15px;
   }
-  .terms-content {
-    font-size: 14px;
-  }
+
   .terms-close-button {
     width: 100%;
-    max-width: 280px;
-    padding: 10px;
     font-size: 13px;
     height: 48px;
   }
+
   .terms-close-button-bottom {
     width: 100%;
-    max-width: 280px;
   }
 }
 
-@media (min-width: 481px) and (max-width: 768px) {
-  .terms-main {
-    padding: 20px 15px;
-  }
-  .terms-header-section {
-    margin-bottom: 15px;
-  }
-  .terms-container {
-    padding: 30px 20px;
-  }
-  .terms-title {
-    font-size: 28px;
-  }
-  .terms-content {
-    font-size: 15px;
-  }
-  .terms-close-button {
-    width: 100%;
-    max-width: 300px;
-    padding: 12px;
-    font-size: 14px;
-  }
-  .terms-close-button-bottom {
-    width: 100%;
-    max-width: 300px;
-  }
-}
-
-@media (min-width: 481px) and (max-width: 768px) and (orientation: landscape) {
-  .terms-main {
-    padding: 15px 20px;
-  }
-  .terms-container {
-    padding: 25px 20px;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  .terms-main {
-    padding: 35px 25px;
-  }
-  .terms-container {
-    padding: 35px;
-  }
-}
-
-@media (min-width: 1025px) and (max-width: 1440px) {
-  .terms-main {
-    padding: 40px 20px;
-  }
-}
-
-@media (min-width: 1441px) {
-  .terms-main {
-    padding: 50px 30px;
-  }
-  .terms-container {
-    max-width: 900px;
-  }
-}
-
-@supports (height: 100dvh) {
-  .terms-page {
-    min-height: 100dvh;
-  }
-
-  .terms-background {
-    height: 100dvh;
-  }
-}
