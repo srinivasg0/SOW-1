@@ -12,6 +12,20 @@ function Terms({ language, setLanguage }) {
     loadTranslations();
   }, [language]);
 
+  useEffect(() => {
+    // Force body height on mobile to prevent white gaps
+    document.documentElement.style.height = '100%';
+    document.body.style.height = '100%';
+    document.body.style.overscrollBehavior = 'none';
+    
+    return () => {
+      // Cleanup on unmount
+      document.documentElement.style.height = '';
+      document.body.style.height = '';
+      document.body.style.overscrollBehavior = '';
+    };
+  }, []);
+
   const loadTranslations = async () => {
     try {
       const [termsResponse, loginResponse] = await Promise.all([
@@ -30,7 +44,6 @@ function Terms({ language, setLanguage }) {
   const handleClose = () => {
     navigate(-1);
   };
-
 
   return (
     <div className="terms-page">
@@ -78,4 +91,3 @@ function Terms({ language, setLanguage }) {
 }
 
 export default Terms;
-
