@@ -20,7 +20,7 @@ body {
   /* let browser handle it at root level */
 }
 
-/* 2) Let each page just be a normal scrolling layer */
+/* 2) Let each page just be a normal scrolling glayer */
 #root {
   min-height: 100vh;
 }
@@ -66,6 +66,7 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
+  color: #00000099;
 }
 
 .terms-close-button {
