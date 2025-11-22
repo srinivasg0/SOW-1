@@ -37,6 +37,7 @@ async function createUser() {
 
     console.log(`Username: ${username}`);
     console.log(`Password: ${password}`);
+    console.log("Need to be created if message is invalid credentials")
     process.exit(0);
   } catch (error) {
     console.error('Error creating user:', error);

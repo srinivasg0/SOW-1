@@ -21,7 +21,6 @@
   object-fit: cover;
 }
 
-/* Header styles moved to Header.css component */
 
 .login-main {
   flex: 1;
@@ -191,7 +190,7 @@
 
 /* Mobile Portrait */
 @media (max-width: 768px) {
-  /* Header styles moved to Header.css component */
+ 
 
   .login-form {
     padding: 30px 20px;

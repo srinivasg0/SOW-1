@@ -125,11 +125,12 @@
   border-radius: 2px;
 }
 
-/* Sidebar */
+
 .pricelist-layout {
   display: flex;
   flex: 1;
 }
+
 
 .sidebar-menu {
   width: 260px;
@@ -202,7 +203,6 @@
   margin: 0 auto;
 }
 
-/* Search Section */
 .search-section {
   display: flex;
   align-items: center;
@@ -252,6 +252,7 @@
   display: flex;
   gap: 12px;
 }
+
 
 .action-btn {
   display: flex;
@@ -345,17 +346,7 @@
   transition: background 0.2s;
 }
 
-.action-menu:hover {
-  background: #f0f0f0;
-}
-
-/* Column Widths */
-.col-article {
-  width: 140px;
-}
-
-.col-product {
-  width: 280px;
+width: 280px;
 }
 
 .col-inprice {
@@ -378,17 +369,7 @@
   width: auto;
 }
 
-.col-actions {
-  width: 50px;
-}
-
-/* Utilities */
-.desktop-only {
-  display: table-cell;
-}
-
-.tablet-landscape {
-  display: table-cell;
+display: table-cell;
 }
 
 /* Mobile Menu */
@@ -434,20 +415,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  font-size: 18px;
-  color: #5f6368;
-}
-
-/* ============================================
-   RESPONSIVE DESIGN
-   ============================================ */
-
-/* Tablet */
-@media (max-width: 1024px) {
-  .sidebar-menu {
-    display: none !important;
-  }
 
   .hamburger-menu-btn {
     display: flex !important;
@@ -466,17 +433,6 @@
     overflow-x: auto;
   }
 
-  .pricelist-table {
-    min-width: 800px;
-  }
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .pricelist-header {
-    padding: 0 16px;
-    height: 56px;
-  }
 
   .user-company {
     display: none;
