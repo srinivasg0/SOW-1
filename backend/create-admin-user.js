@@ -1,4 +1,4 @@
-// Script to create admin user using External Database URL
+
 import pg from 'pg';
 import bcrypt from 'bcryptjs';
 
@@ -23,7 +23,7 @@ async function createAdminUser() {
   });
 
   try {
-    // Hash password
+    // Hash password (so directly inserting password into database with query will be little hard but its fine)
     const saltRounds = 10;
     const passwordHash = await bcrypt.hash(password, saltRounds);
 

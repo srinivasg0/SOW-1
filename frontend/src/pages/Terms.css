@@ -20,7 +20,7 @@ body {
   /* let browser handle it at root level */
 }
 
-/* 2) Let each page just be a normal scrolling glayer */
+/* 2) Let each page just be a normal scrolling layer */
 #root {
   min-height: 100vh;
 }
@@ -66,15 +66,22 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
+}
+
+/* New class for content coloring */
+.terms-content {
   color: #00000099;
+  /* Black with 60% opacity (hex 99) */
+  font-size: 16px;
+  line-height: 1.6;
+  white-space: pre-wrap;
 }
 
 .terms-close-button {
   width: 15vw;
   max-width: 280px;
-  min-width: 200px;
   height: 54px;
-  padding: 14px 20px;
+  padding: 14px;
   background: rgb(8, 158, 30);
   color: white;
   border: none;
@@ -83,7 +90,6 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: background 0.3s;
-  white-space: nowrap;
 }
 
 .terms-close-button-bottom {

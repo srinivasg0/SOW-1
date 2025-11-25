@@ -21,7 +21,6 @@
   object-fit: cover;
 }
 
-
 .login-main {
   flex: 1;
   display: flex;
@@ -188,10 +187,8 @@
   opacity: 0.8;
 }
 
-/* Mobile Portrait */
+/* Responsive Design */
 @media (max-width: 768px) {
- 
-
   .login-form {
     padding: 30px 20px;
   }
@@ -207,7 +204,6 @@
   }
 }
 
-/* Tablet */
 @media (min-width: 769px) and (max-width: 1024px) {
   .nav-links {
     gap: 20px;
@@ -218,7 +214,6 @@
   }
 }
 
-/* Mobile Landscape */
 @media (max-width: 768px) and (orientation: landscape) {
   .login-main {
     padding: 20px;
@@ -228,4 +223,3 @@
     padding: 25px 20px;
   }
 }
-

@@ -5,7 +5,6 @@ import pool from '../db/connection.js';
 
 const router = express.Router();
 
-// Login endpoint
 router.post('/login', async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -14,7 +13,6 @@ router.post('/login', async (req, res) => {
       return res.status(400).json({ error: 'Username and password required' });
     }
 
-    // Find user
     const result = await pool.query(
       'SELECT id, username, password_hash FROM users WHERE username = $1',
       [username]
@@ -26,14 +24,12 @@ router.post('/login', async (req, res) => {
 
     const user = result.rows[0];
 
-    // Verify password
     const isValidPassword = await bcrypt.compare(password, user.password_hash);
 
     if (!isValidPassword) {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
-    // Generate JWT token
     const token = jwt.sign(
       { id: user.id, username: user.username },
       process.env.JWT_SECRET,
@@ -53,7 +49,6 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Verify token endpoint (optional, for testing)
 router.get('/verify', async (req, res) => {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
@@ -71,4 +66,3 @@ router.get('/verify', async (req, res) => {
 });
 
 export default router;
-

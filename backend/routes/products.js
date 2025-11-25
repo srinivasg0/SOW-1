@@ -4,10 +4,10 @@ import { authenticateToken } from '../middleware/auth.js';
 
 const router = express.Router();
 
-// All product routes require authentication
+
 router.use(authenticateToken);
 
-// Get all products
+
 router.get('/', async (req, res) => {
   try {
     const result = await pool.query(
